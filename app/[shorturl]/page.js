@@ -1,9 +1,11 @@
+export const runtime = "nodejs"; // ✅ disables Edge runtime
+
 import { redirect } from "next/navigation";
 import clientPromise from "@/lib/mongodb";
 
 export default async function Page({ params }) {
   // ✅ Awaiting params explicitly as per Edge Runtime needs
-  const shorturl = (await params).shorturl;
+  const shorturl = params.shorturl;
 
   const client = await clientPromise;
   const db = client.db("bitLinks");
